@@ -10,6 +10,12 @@ The matching, license-gated model bundle is hosted at
 card links back to this node repository and records the exact upstream
 revisions and SHA-256 checksums.
 
+Release downloads and the Windows Studio integration bundle are published on
+this repository's [Releases page](https://github.com/T8mars/Comfyui-Echo-WM-T8/releases).
+The real ComfyUI path has been validated at 256×128, 25 frames, 24 fps with the
+Flash/Causal four-step schedule and an H.264 action-HUD output. Model weights
+remain separate in the gated Hugging Face bundle.
+
 The node package intentionally contains no model dependencies. It launches
 `echo_wm/inference_wm_causal.py` with a separate Python interpreter, an argv
 list, and `shell=False`. Echo-WM's Torch/CUDA stack therefore cannot overwrite
