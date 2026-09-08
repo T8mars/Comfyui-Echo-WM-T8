@@ -1,0 +1,20 @@
+# Development and CI files are not needed in the Registry archive.
+.github/
+tests/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.log
+
+# Never package local environments, weights, or generated media.
+.venv/
+venv/
+checkpoints/
+models/
+output/
+temp/
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+*.mp4

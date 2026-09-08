@@ -1,0 +1,28 @@
+[project]
+name = "echo-wm-t8"
+version = "0.1.0"
+description = "Native VIDEO nodes for isolated Echo-WM Flash/Causal generation."
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Environment :: GPU :: NVIDIA CUDA",
+]
+
+[project.urls]
+Repository = "https://github.com/T8mars/Comfyui-Echo-WM-T8"
+Documentation = "https://github.com/T8mars/Comfyui-Echo-WM-T8#readme"
+"Bug Tracker" = "https://github.com/T8mars/Comfyui-Echo-WM-T8/issues"
+
+[tool.comfy]
+PublisherId = "t8star"
+DisplayName = "Echo-WM T8"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["N999"]

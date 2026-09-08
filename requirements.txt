@@ -1,0 +1,2 @@
+# Intentionally empty: inference runs in a separate Echo-WM environment.
+# NumPy and Pillow are provided by ComfyUI and are only used to stage one PNG.
