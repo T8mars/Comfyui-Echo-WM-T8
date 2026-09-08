@@ -5,6 +5,11 @@ as three ComfyUI nodes. It accepts a first-frame `IMAGE`, prompt, and WASD/IJKL
 camera action, and returns ComfyUI's native `VIDEO` object without expanding
 the generated movie into an in-memory image batch.
 
+The matching, license-gated model bundle is hosted at
+[t8star/Echo-WM-Comfy](https://huggingface.co/t8star/Echo-WM-Comfy). The model
+card links back to this node repository and records the exact upstream
+revisions and SHA-256 checksums.
+
 The node package intentionally contains no model dependencies. It launches
 `echo_wm/inference_wm_causal.py` with a separate Python interpreter, an argv
 list, and `shell=False`. Echo-WM's Torch/CUDA stack therefore cannot overwrite
@@ -44,13 +49,13 @@ conda activate echo-wm
 pip install torch==2.9.1 torchvision==0.24.1 torchaudio==2.9.1 \
   --index-url https://download.pytorch.org/whl/cu128
 pip install -r requirements.txt
-hf download Echo-Team/Echo-WM --local-dir checkpoints
-hf download google/gemma-3-12b-it-qat-q4_0-unquantized \
-  --local-dir checkpoints/gemma-3
+hf auth login
+hf download t8star/Echo-WM-Comfy --local-dir checkpoints
 ```
 
-Gemma 3 is gated: accept its license and authenticate with Hugging Face before
-downloading. The Runtime node expects this layout unless paths are supplied:
+The model bundle is gated so recipients acknowledge both upstream licenses and
+their use restrictions before download. The Runtime node expects this layout
+unless paths are supplied:
 
 ```text
 echo_wm/
@@ -91,4 +96,5 @@ the **Publish to Comfy registry** workflow. A push to `main` that changes
 `pyproject.toml` also triggers it. Bump the semantic version for every release.
 
 Model weights are not distributed by this node package and remain subject to
-their respective upstream licenses.
+their respective upstream licenses. The separately hosted convenience mirror
+is [t8star/Echo-WM-Comfy](https://huggingface.co/t8star/Echo-WM-Comfy).
