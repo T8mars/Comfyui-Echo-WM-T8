@@ -198,6 +198,34 @@ def test_cancel_interrupt_terminates_launched_process(tmp_path, monkeypatch):
     assert popen_options["shell"] is False
 
 
+def test_windows_termination_uses_fixed_executable_and_numeric_pid(monkeypatch):
+    class FakeOS:
+        name = "nt"
+
+    class FakeProcess:
+        pid = 1234
+
+        def poll(self):
+            return None
+
+        def wait(self, timeout):
+            assert timeout == 10
+            return 0
+
+    calls = []
+
+    def fake_run(command, **options):
+        calls.append((command, options))
+
+    monkeypatch.setattr(NODES, "os", FakeOS())
+    monkeypatch.setattr(NODES.subprocess, "run", fake_run)
+    NODES._terminate_process(FakeProcess())
+
+    assert calls[0][0] == ["taskkill.exe", "/PID", "1234", "/T", "/F"]
+    assert calls[0][1]["shell"] is False
+    assert calls[0][1]["check"] is False
+
+
 def test_generate_smoke_returns_native_video_and_metadata(tmp_path, monkeypatch):
     output_root = tmp_path / "output"
     temp_root = tmp_path / "temp"
