@@ -78,6 +78,8 @@ minimal graph. Choose matching pairs:
 Cancelling the ComfyUI job terminates the isolated inference process tree.
 Each successful run writes an MP4, a log, and JSON metadata under
 `ComfyUI/output/echo_wm_t8`. Partial output is removed on failure or cancel.
+The subprocess boundary, path validation, environment handling, and Registry
+scanner rationale are documented in [`SECURITY.md`](SECURITY.md).
 
 ## Publish to the Comfy Registry
 
